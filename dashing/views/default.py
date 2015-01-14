@@ -1,12 +1,11 @@
-# -*- encoding: utf-8 -*-
 from django.views.generic import TemplateView
 from django.core.exceptions import PermissionDenied
 
-from settings import dashing_settings
+from dashing.settings import dashing_settings
 
+class DefaultDashboard(TemplateView):
 
-class Dashboard(TemplateView):
-    template_name = 'dashing/dashboard.html'
+    template_name = 'dashing/default.html'
     permission_classes = dashing_settings.PERMISSION_CLASSES
 
     def check_permissions(self, request):
@@ -21,4 +20,7 @@ class Dashboard(TemplateView):
 
     def get(self, request, *args, **kwargs):
         self.check_permissions(request)
-        return super(Dashboard, self).get(request, *args, **kwargs)
+        return super(DefaultDashboard, self).get(request, *args, **kwargs)
+
+    def dashname(self):
+        return 'default'
