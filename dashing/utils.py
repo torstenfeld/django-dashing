@@ -1,8 +1,14 @@
 from django.conf.urls import url
-from .views import Dashboard
-
+from os.path import join as os_join
+from sys import modules as sys_modules
+from pkgutil import iter_modules
+from distutils.sysconfig import get_python_lib
+from warnings import catch_warnings, simplefilter
+from inspect import getmembers, isclass
+import importlib
 
 class Router(object):
+
     def __init__(self):
         self.registry = []
 
@@ -18,10 +24,32 @@ class Router(object):
         """
         self.registry.append((widget, basename, parameters))
 
+    def __load_dashboards(self):
+        self.dashboards = []
+        dash_path = 'dashing.views'
+        full_path = os_join(get_python_lib(), dash_path.replace('.', '/'))
+        for importer, package_name, _ in iter_modules([full_path]):
+            full_package_name = '%s.%s' % (dash_path, package_name)
+            if full_package_name not in sys_modules:
+                module = importlib.import_module(full_package_name)
+                for name, obj in getmembers(module, isclass):
+                    if 'Dashboard' not in name or 'Default' in name:
+                        continue
+                    self.dashboards.append(obj)
+
     def get_urls(self):
-        urlpatterns = [
-            url(r'^$', Dashboard.as_view(), name='dashboard'),
-        ]
+        urlpatterns = []
+        with catch_warnings():
+            simplefilter('ignore')
+            self.__load_dashboards()
+        for module in self.dashboards:
+            methodname = module().dashname()
+            dashboardname = '%sdashboard' % methodname
+            #if not any(dashboardname in url_name.name for url_name in urlpatterns):
+            urlpatterns.append(url(r'^%s/' % methodname, 
+                                   module.as_view(),
+                                   name=dashboardname)
+                                  )
 
         for widget, basename, parameters in self.registry:
             urlpatterns += [
