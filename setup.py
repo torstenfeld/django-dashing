@@ -11,6 +11,10 @@ setup(
     version='0.2.1',
     packages=['dashing'],
     include_package_data=True,
+    install_requires=[
+        'setuptools',
+        'django',
+    ]
     license='BSD License',
     description='A simple Django dashboard app to visualize interesting data about your project.',
     long_description=README,

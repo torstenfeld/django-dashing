@@ -5,7 +5,9 @@ USER_SETTINGS = getattr(settings, 'DASHING', None)
 
 DEFAULTS = {
     'REPOSITORY': 'https://cdn.rawgit.com/talpor/django-dashing-channel/master/repositories.json',
-    'INSTALLED_WIDGETS': ('number', 'list', 'graph', 'clock',),
+    'DEFAULT_WIDGETS': ('number', 'list', 'graph', 'clock',
+                        'numberchange', 'weather', 'knob'),
+    'ADDITIONAL_WIDGETS': {},
     'PERMISSION_CLASSES':  (
         'dashing.permissions.AllowAny',
     )
