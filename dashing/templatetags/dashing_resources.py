@@ -23,7 +23,9 @@ def remote_path(name):
         resource = _resource
 
     if 'widgets' in resource:
-        repositories = {x['name']:x['repository'] for x in resource['widgets']}
+        repositories = {}
+        for x in resource['widgets']:
+            repositories[x['name']] = x['repository']
     else:
         raise ValueError('No widgets specified in the repository')
 
