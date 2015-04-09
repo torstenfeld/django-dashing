@@ -1,6 +1,6 @@
 {
-  "name": "django-dashing",
-  "version": "0.2.4",
+  "name": "django-dashing-custom-torsten",
+  "version": "0.2.5b3",
   "description": "`django-dashing` is a customisable, modular dashboard application framework for Django to visualize interesting data about your project.",
   "directories": {
     "doc": "docs",
@@ -13,12 +13,12 @@
     "type": "git",
     "url": "https://github.com/talpor/django-dashing.git"
   },
-  "author": "Mauricio Reyes",
+  "author": "Torsten Feld (Original: Mauricio Reyes)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/talpor/django-dashing/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/talpor/django-dashing",
+  "homepage": "https://github.com/torstenfeld/django-dashing",
   "dependencies": {
     "mocha": "^2.1.0",
     "phantom": "^0.7.2"

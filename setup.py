@@ -7,17 +7,19 @@ README = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
-    name='django-dashing',
-    version='0.2.4',
+    name='django-dashing-custom-torsten',
+    version='0.2.5b3',
     packages=['dashing'],
     include_package_data=True,
     license='MIT License',
-    description='A simple Django dashboard app to visualize interesting data about your project.',
+    description='A simple Django dashboard app to visualize interesting data about your project. '
+                'Custom for testing by Torsten Feld',
     long_description=README,
-    url='https://github.com/talpor/django-dashing/',
-    author='Mauricio Reyes',
-    author_email='mreyes@talpor.com',
+    url='https://github.com/torstenfeld/django-dashing',
+    author='Torsten Feld (Original: Mauricio Reyes)',
+    author_email='torsten.feld@avira.com (Original: mreyes@talpor.com)',
     classifiers=[
+        'Development Status :: 3 - Alpha',
         'Environment :: Web Environment',
         'Framework :: Django',
         'Intended Audience :: Developers',
@@ -31,5 +33,5 @@ setup(
         'Topic :: Software Development :: Localization',
         'Topic :: Utilities',
     ],
-    keywords=['django', 'metrics', 'dashboard', 'dashing', 'metric', 'widgets', 'data'],
+    keywords=[],
 )
